@@ -1,11 +1,9 @@
 # mern_blog
-
 This project was sample testing of mern stack to a blog 
 
 # dontenv
 PORT = 5050
 DB_CONNECTIONBASE ='mongodb://localhost:27017/blog'
-
 
 ## Available Scripts
 
@@ -73,3 +71,9 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+=======
+sample testing
+
+initize with npm install
+
+npm start
