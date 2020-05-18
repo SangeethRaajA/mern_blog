@@ -1,15 +1,18 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const morgan = require('morgan');
+const methodOverride = require('method-override');
 
 
 //import routes
+const Article = require('./models/article')
 const articleRouter = require('./routes/articles')
+
 const app = express()
 
 //mongodb connection
 mongoose.connect('mongodb://localhost/blog',{
-    useNewUrlParser: true, useUnifiedTopology: true,    
+    useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true,    
     })
     .then(() => console.log('DB Connected'))
 
@@ -22,17 +25,10 @@ app.set('view engine','ejs')
 
 app.use(express.urlencoded({ extended: false }))
 
-app.get('/',(req,res) =>{
-    const articles = [{
-        title : 'test article',
-        createdAt : new Date(),
-        description : 'test desciption 1'
-    },
-    {
-        title : 'test article 2',
-        createdAt : new Date(),
-        description : 'test desciption 2'
-    }]
+app.use(methodOverride('_method'))
+
+app.get('/', async (req, res) =>{
+    const articles = await Article.find().sort({createdAt:'desc'})
     res.render('articles/index', { articles: articles })
 })
 

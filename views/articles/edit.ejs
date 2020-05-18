@@ -8,20 +8,11 @@
 </head>
 <body class="bg-dark  text-white" >
     <div class="container">
-
-        <br><h1 class="md-4"><%= article.title %></h1>
-         
-        <div class="text-muted mb-2">
-             <%= article.createdAt.toLocaleDateString() %>
-         </div>
-
-            <a href="/" class="btn btn-secondary">All Article</a>
-            <a href="/articles/edit/<%= article.id %>" class="btn btn-primary">Edit</a>
-    
-        <div><br>
-            <%- article.sanitizedHtml %>
-        </div>
-    
+        <br><h1 class="md-4">Edit Article</h1>
+           
+        <form action="/articles/<%= article.id %>?_method=PUT" method="POST">
+            <%- include("_form_fields") %>
+        </form>
     </div>
 </body>
 </html>
